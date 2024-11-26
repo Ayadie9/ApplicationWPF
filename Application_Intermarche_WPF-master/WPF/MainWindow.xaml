@@ -1,0 +1,324 @@
+﻿<Window
+    x:Class="WPF.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:WPF"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Gestion des Réservations Intermarché"
+    Width="1080"
+    Height="720"
+    MinWidth="700"
+    MinHeight="500"
+    WindowState="Maximized"
+    mc:Ignorable="d">
+    <TabControl>
+
+        <TabItem Header="ReservationVehicule">
+            <Grid x:Name="GridReservationVehicule" Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="6*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="16*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="1.5*" />
+                    <RowDefinition Height="5.5*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="1*" />
+
+                </Grid.RowDefinitions>
+
+                <Image
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="3"
+                    Source="/Images/logoIntermarcher.png"
+                    Stretch="Fill" />
+                <Image
+                    Grid.Column="4"
+                    Grid.ColumnSpan="2"
+                    Source="/Images/indivisu.png"
+                    Stretch="Fill" />
+                <Ellipse
+                    Grid.Column="4"
+                    Grid.ColumnSpan="2"
+                    Stroke="Black" />
+                <Label
+                    Grid.Row="0"
+                    Grid.RowSpan="2"
+                    Grid.Column="3"
+                    Margin="0,58,0,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="Choix des Véhicules"
+                    FontSize="18"
+                    FontWeight="Bold" />
+
+                <StackPanel
+                    Grid.Row="2"
+                    Grid.RowSpan="5"
+                    Grid.Column="1"
+                    Orientation="Vertical">
+
+                    <Label
+                        x:Name="Labelclient"
+                        HorizontalContentAlignment="Center"
+                        Content="Client"
+                        FontSize="18"
+                        FontWeight="Bold" />
+
+                    <CheckBox
+                        x:Name="ButtonNouveauClient"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Center"
+                        Checked="ButtonNouveauClient_Checked"
+                        Content="Créer une nouvelle fiche client" />
+
+                    <Label
+                        x:Name="LabelOU"
+                        HorizontalContentAlignment="Center"
+                        Content="OU" />
+
+                    <ComboBox
+                        x:Name="ComboBoxSelectionClient"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        SelectionChanged="ComboBoxSelectionClient_Selected" />
+                    <Button x:Name="ButtonAfficherDetailClient" 
+                        Content="Afficher Détail Client" 
+                        Background="{x:Null}" 
+                        Foreground="#FF3461D0" 
+                        BorderBrush="{x:Null}" 
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Top" 
+                        FontWeight="Bold" 
+                        FontSize="10" 
+                        Margin="0,0,5,0" Click="ButtonAfficherDetailClient_Click"/>
+
+                    <Label
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Center"
+                        Content="Critère de recherche"
+                        FontSize="14"
+                        FontWeight="Bold" />
+
+                    <RadioButton
+                        x:Name="ButtonDateRéservation"
+                        HorizontalContentAlignment="Center"
+                        Checked="ButtonDateRéservation_Checked"
+                        Content="Date de réservation"
+                        FontStretch="Normal" />
+
+                    <RadioButton
+                        x:Name="ButtonCategorieVehicule"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Center"
+                        Checked="ButtonCategorieVehicule_Checked"
+                        Content="Catégorie véhicule" />
+
+                    <RadioButton
+                        x:Name="ButtonMagasin"
+                        Margin="0,5,0,0"
+                        HorizontalContentAlignment="Center"
+                        Checked="ButtonMagasin_Checked"
+                        Content="Magasin" />
+                    <Grid Margin="0,15,0,10">
+                        <ComboBox
+                            x:Name="ComboBoxCategorieVehicule"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Height="40"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Visibility="Hidden">
+                            <ComboBoxItem Content="Vehicule" IsSelected="True" />
+                        </ComboBox>
+
+                        <ComboBox
+                            x:Name="ComboBoxMagasin"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Height="40"
+                            VerticalAlignment="Center"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center"
+                            Visibility="Hidden">
+                            <ComboBoxItem Content="Magasin" IsSelected="True" />
+                        </ComboBox>
+
+
+                        <Calendar
+                            x:Name="CalendarReservation"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Visibility="Visible" />
+                    </Grid>
+
+                    <ComboBox
+                        x:Name="ComboBoxKilometre"
+                        Height="30"
+                        Margin="0,0,0,0">
+                        <ComboBoxItem>- 100km</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">Forfait Kilométrique</ComboBoxItem>
+                        <ComboBoxItem>Entre 100 et 250 km</ComboBoxItem>
+                        <ComboBoxItem>+ 250 km</ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox
+                        x:Name="ComboBoxAssurance"
+                        Height="30                             "
+                        Margin="0,15,0,0"
+                        VerticalAlignment="Bottom">
+
+                        <ComboBoxItem>Sans Assurance</ComboBoxItem>
+                        <ComboBoxItem IsSelected="True">Assurance</ComboBoxItem>
+                        <ComboBoxItem>Avec Assurance</ComboBoxItem>
+                    </ComboBox>
+
+
+                </StackPanel>
+
+                <DataGrid
+                    Name="DataGridRechercheVehicule"
+                    Grid.Row="2"
+                    Grid.Column="3"
+                    AutoGenerateColumns="False"
+                    IsReadOnly="True"
+                    ItemsSource="{Binding LesVoitures}" SelectionChanged="DataGridRechercheVehicule_SelectionChanged">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding Nom}"
+                            Header="Nom" />
+                        <DataGridTextColumn
+                            Width="80"
+                            Binding="{Binding Categorie}"
+                            Header="Prenom" />
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button
+                    x:Name="ButtonAjouterVehicule"
+                    Grid.Row="3"
+                    Grid.Column="3"
+                    Width="50"
+                    HorizontalAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Click="ButtonAjouterVehicule_Click"
+                    Content="\/"
+                    FontSize="18" />
+
+
+
+                <ListBox
+                    x:Name="ListeBoxVehiculeChoisit"
+                    Grid.Row="4"
+                    Grid.RowSpan="2"
+                    Grid.Column="3" />
+                <Button
+                    x:Name="ButtonValider"
+                    Grid.Row="6"
+                    Grid.Column="3"
+                    Width="60"
+                    Margin="0,5,0,5"
+                    HorizontalAlignment="Center"
+                    Content="Valider" Click="ButtonValider_Click" />
+            </Grid>
+        </TabItem>
+        <TabItem Header="Visualiser Reservation">
+
+            <Grid x:Name="GridVisualiserReservation" Visibility="Visible">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*" />
+                    <ColumnDefinition Width="219*"/>
+                    <ColumnDefinition Width="119*" />
+                    <ColumnDefinition Width="179*" />
+                    <ColumnDefinition Width="239*" />
+                    <ColumnDefinition Width="119*" />
+                    <ColumnDefinition Width="179*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="3*" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="3*" />
+
+
+
+                </Grid.RowDefinitions>
+                <Image
+                    Grid.Row="0"
+                    Grid.RowSpan="1"
+                    Grid.Column="0"
+                    Source="/Images/logoIntermarcher.png"
+                    Stretch="Fill" Grid.ColumnSpan="3" Margin="0,0,119,0" />
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="6"
+                    Grid.ColumnSpan="1"
+                    Width="70"
+                    Height="70"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Source="/Images/indivisu.png"
+                    Stretch="Fill" />
+                <Ellipse
+                    Grid.Row="0"
+                    Grid.Column="6"
+                    Stroke="Black" />
+                <Label
+                    Grid.Column="3"
+                    Grid.ColumnSpan="2"
+                    Width="197"
+                    Height="39"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="Visualiser Réservation"
+                    FontSize="18"
+                    FontWeight="Bold" Margin="110,135,0,0" Grid.RowSpan="2" />
+                <CheckBox
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="Recherche par Nom" Margin="0,135,0,0" Grid.RowSpan="2" />
+                <CheckBox
+                    Grid.Row="1"
+                    Grid.Column="5"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Content="rechereche par immatriculation de véhicule" Margin="0,135,0,0" Grid.RowSpan="2" />
+                <TextBox
+                    Grid.Row="3"
+                    Grid.Column="4"
+                    Grid.ColumnSpan="1"
+                    Width="120"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Text=""
+                    TextWrapping="Wrap" />
+                <ListBox
+                    x:Name="ListeBoxVisualiserVehicule"
+                    Grid.Row="3"
+                    Grid.RowSpan="3"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="4" />
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>
